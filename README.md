@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# dev-radar
+
+> **Next.js 16.3 · React 19.2 Feature Showcase** — August 2026
+
+Interactive code examples of the latest Next.js and React features. Each demo shows a real working scenario with annotated code — not just hello world.
+
+![dev-radar showcase](./public/next.svg)
+
+## Live Demos
+
+| Demo | Feature | Version |
+|------|---------|---------|
+| 🎬 [View Transitions](/demos/view-transitions) | `<ViewTransition>` shared element morph, directional nav | React 19.2 |
+| ⚡ [Server Actions](/demos/server-actions) | `updateTag()`, `revalidateTag()`, `refresh()` | Next.js 16 |
+| 🎯 [useEffectEvent](/demos/use-effect-event) | Extract non-reactive logic from Effects | React 19.2 |
+| 🗄️ [use cache](/demos/use-cache) | `'use cache'` + `cacheLife()` + `cacheTag()` | Next.js 16 |
+| 🚀 [Instant Navigation](/demos/instant-navigation) | Suspense + Cache Components + PPR | Next.js 16 |
+
+## What's demonstrated
+
+### React 19.2
+- **`<ViewTransition>`** — Animate elements that update inside a Transition or navigation. Shared element morphing, Suspense reveals, directional slides.
+- **`useEffectEvent`** — Extract non-reactive logic from Effects. Fix stale closure bugs without adding extra dependencies.
+
+### Next.js 16
+- **`updateTag()`** — New API for read-your-writes semantics. Expires cache and refreshes immediately in the same request.
+- **`revalidateTag(tag, 'max')`** — Updated API (now requires second `cacheLife` profile argument).
+- **`refresh()`** — Refresh client router from within a Server Action.
+- **`'use cache'`** — Stable (no more `unstable_` prefix). Cache async functions with `cacheLife()` and `cacheTag()`.
+- **`cacheLife()` / `cacheTag()`** — Stable cache control APIs.
+- **Cache Components** (`cacheComponents: true`) — PPR successor. Validate instant navigation in dev.
+- **Async params** — `params` and `searchParams` are fully async (synchronous access removed).
+- **`middleware` → `proxy`** — File and function renamed.
+
+## Tech Stack
+
+- **Next.js 16.3.1** with Turbopack (default, no flags needed)
+- **React 19.2.8**
+- **TypeScript 5**
+- **Tailwind CSS v4**
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+app/
+├── page.tsx                        ← Hub: all demo links
+├── layout.tsx
+├── globals.css                     ← Design system + ViewTransition CSS
+│
+├── demos/
+│   ├── view-transitions/page.tsx
+│   ├── server-actions/
+│   │   ├── page.tsx
+│   │   ├── actions.ts              ← 'use server'
+│   │   └── NoteForm.tsx
+│   ├── use-effect-event/page.tsx
+│   ├── use-cache/page.tsx
+│   └── instant-navigation/page.tsx
+│
+components/
+├── NavBar.tsx
+├── DemoCard.tsx
+├── DemoLayout.tsx
+└── CodeBlock.tsx
+```
 
-## Learn More
+## Key Links
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [Next.js 16 Upgrade Guide](./node_modules/next/dist/docs/01-app/02-guides/upgrading/version-16.md)
+- [Instant Navigation Guide](./node_modules/next/dist/docs/01-app/02-guides/instant-navigation.md)
+- [View Transitions Guide](./node_modules/next/dist/docs/01-app/02-guides/view-transitions.md)
+- [React 19.2 Announcement](https://react.dev/blog/2025/10/01/react-19-2)
