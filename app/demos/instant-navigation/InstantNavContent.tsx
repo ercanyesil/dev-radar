@@ -129,114 +129,90 @@ export default function InstantNavContent({ fastComponent, slowComponent }: Inst
       docsUrl="https://nextjs.org/docs/app/guides/instant-navigation"
     >
       {/* --- What is instant --- */}
-      <section className="demo-section">
-        <div className="demo-label">{nav.conceptLabel}</div>
-        <h2 style={{ fontSize: "1.4rem", marginBottom: "0.75rem" }}>
-          {nav.conceptTitle}
-        </h2>
-        <p style={{ marginBottom: "1rem" }}
-          dangerouslySetInnerHTML={{ __html: nav.conceptDesc }}
-        />
+      <section className="mt-10">
+        <div className="flex items-center gap-2 text-[0.72rem] font-bold tracking-widest uppercase text-text-muted mb-2 before:content-[''] before:block before:w-4 before:h-px before:bg-text-muted before:rounded-[1px]">
+          {nav.conceptLabel}
+        </div>
+        <h2 className="text-[1.4rem] font-bold mb-3 text-text-primary">{nav.conceptTitle}</h2>
+        <p className="mb-4" dangerouslySetInnerHTML={{ __html: nav.conceptDesc }} />
         <CodeBlock code={WHAT_IS_INSTANT_CODE} filename="concept.ts" language="ts" />
 
         {/* Two paths diagram */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "1rem",
-            marginTop: "1.25rem",
-          }}
-        >
+        <div className="grid grid-cols-2 gap-4 mt-5">
           {[nav.directVisit, nav.clientNav].map((item) => (
             <div
               key={item.label}
-              style={{
-                background: "var(--bg-surface)",
-                border: `1px solid var(--accent-cyan)30`,
-                borderRadius: "var(--radius-sm)",
-                padding: "1.25rem",
-              }}
+              className="bg-bg-surface rounded-lg p-5"
+              style={{ border: `1px solid var(--color-accent-cyan)30` }}
             >
-              <div style={{ fontSize: "1.5rem", marginBottom: "0.5rem" }}>{item.icon}</div>
-              <div style={{ fontWeight: 700, fontSize: "0.9rem", color: "var(--accent-cyan)", marginBottom: "0.375rem" }}>
-                {item.label}
-              </div>
-              <p style={{ fontSize: "0.8rem", margin: 0 }}>{item.desc}</p>
+              <div className="text-[1.5rem] mb-2">{item.icon}</div>
+              <div className="font-bold text-[0.9rem] text-accent-cyan mb-1.5">{item.label}</div>
+              <p className="text-[0.8rem] m-0">{item.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
-      <div className="divider" />
+      <div className="h-px bg-border-subtle my-10" />
 
       {/* --- Live streaming demo --- */}
-      <section className="demo-section">
-        <div className="demo-label">{nav.demoLabel}</div>
-        <h2 style={{ fontSize: "1.4rem", marginBottom: "0.75rem" }}>
-          {nav.demoTitle}
-        </h2>
-        <p style={{ marginBottom: "1.5rem" }}>
-          {nav.demoDesc}
-        </p>
+      <section className="mt-10">
+        <div className="flex items-center gap-2 text-[0.72rem] font-bold tracking-widest uppercase text-text-muted mb-2 before:content-[''] before:block before:w-4 before:h-px before:bg-text-muted before:rounded-[1px]">
+          {nav.demoLabel}
+        </div>
+        <h2 className="text-[1.4rem] font-bold mb-3 text-text-primary">{nav.demoTitle}</h2>
+        <p className="mb-6">{nav.demoDesc}</p>
 
-        <div
-          className="demo-interactive"
-          style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}
-        >
-          <div style={{ fontSize: "0.8rem", color: "var(--text-muted)", marginBottom: "0.25rem" }}>
-            {nav.streamingStatus}
-          </div>
+        <div className="bg-bg-surface border border-border-card rounded-[12px] p-8 my-6 flex flex-col gap-3">
+          <div className="text-[0.8rem] text-text-muted mb-1">{nav.streamingStatus}</div>
           {fastComponent}
           {slowComponent}
         </div>
-        <p style={{ fontSize: "0.8rem", color: "var(--text-muted)", marginTop: "0.75rem" }}>
+        <p className="text-[0.8rem] text-text-muted mt-3">
           ✅ {nav.streamNote}
         </p>
       </section>
 
-      <div className="divider" />
+      <div className="h-px bg-border-subtle my-10" />
 
       {/* --- Product page pattern --- */}
-      <section className="demo-section">
-        <div className="demo-label">{nav.patternLabel}</div>
-        <h2 style={{ fontSize: "1.4rem", marginBottom: "0.75rem" }}>
-          {nav.patternTitle}
-        </h2>
+      <section className="mt-10">
+        <div className="flex items-center gap-2 text-[0.72rem] font-bold tracking-widest uppercase text-text-muted mb-2 before:content-[''] before:block before:w-4 before:h-px before:bg-text-muted before:rounded-[1px]">
+          {nav.patternLabel}
+        </div>
+        <h2 className="text-[1.4rem] font-bold mb-3 text-text-primary">{nav.patternTitle}</h2>
         <CodeBlock code={PRODUCT_PAGE_CODE} filename="app/store/[slug]/page.tsx" language="tsx" />
       </section>
 
-      <div className="divider" />
+      <div className="h-px bg-border-subtle my-10" />
 
       {/* --- Fixing blocking --- */}
-      <section className="demo-section">
-        <div className="demo-label">{nav.fixLabel}</div>
-        <h2 style={{ fontSize: "1.4rem", marginBottom: "0.75rem" }}>
-          {nav.fixTitle}
-        </h2>
-        <p style={{ marginBottom: "1rem" }}>
-          {nav.fixDesc}
-        </p>
+      <section className="mt-10">
+        <div className="flex items-center gap-2 text-[0.72rem] font-bold tracking-widest uppercase text-text-muted mb-2 before:content-[''] before:block before:w-4 before:h-px before:bg-text-muted before:rounded-[1px]">
+          {nav.fixLabel}
+        </div>
+        <h2 className="text-[1.4rem] font-bold mb-3 text-text-primary">{nav.fixTitle}</h2>
+        <p className="mb-4">{nav.fixDesc}</p>
         <CodeBlock code={BLOCKING_FIX_CODE} filename="app/products/[slug]/page.tsx" language="tsx" />
       </section>
 
-      <div className="divider" />
+      <div className="h-px bg-border-subtle my-10" />
 
       {/* --- Link prefetching & opt-out --- */}
-      <section className="demo-section">
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
+      <section className="mt-10">
+        <div className="grid grid-cols-2 gap-6">
           <div>
-            <div className="demo-label">{nav.prefetchLabel}</div>
-            <h2 style={{ fontSize: "1.2rem", marginBottom: "0.75rem" }}>
-              {nav.prefetchTitle}
-            </h2>
+            <div className="flex items-center gap-2 text-[0.72rem] font-bold tracking-widest uppercase text-text-muted mb-2 before:content-[''] before:block before:w-4 before:h-px before:bg-text-muted before:rounded-[1px]">
+              {nav.prefetchLabel}
+            </div>
+            <h2 className="text-[1.2rem] font-bold mb-3 text-text-primary">{nav.prefetchTitle}</h2>
             <CodeBlock code={LINK_PREFETCH_CODE} filename="components/nav.tsx" language="tsx" />
           </div>
           <div>
-            <div className="demo-label">{nav.optoutLabel}</div>
-            <h2 style={{ fontSize: "1.2rem", marginBottom: "0.75rem" }}>
-              {nav.optoutTitle}
-            </h2>
+            <div className="flex items-center gap-2 text-[0.72rem] font-bold tracking-widest uppercase text-text-muted mb-2 before:content-[''] before:block before:w-4 before:h-px before:bg-text-muted before:rounded-[1px]">
+              {nav.optoutLabel}
+            </div>
+            <h2 className="text-[1.2rem] font-bold mb-3 text-text-primary">{nav.optoutTitle}</h2>
             <CodeBlock code={INSTANT_EXPORT_CODE} filename="app/dashboard/layout.tsx" language="tsx" />
           </div>
         </div>

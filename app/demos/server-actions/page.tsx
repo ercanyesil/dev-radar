@@ -12,32 +12,20 @@ export const metadata = {
 async function NoteList() {
   const notes = await getNotes();
   return (
-    <div style={{ marginTop: "0.5rem" }}>
+    <div className="mt-2">
       {notes.length === 0 && (
-        <p style={{ color: "var(--text-muted)", fontSize: "0.875rem" }}>—</p>
+        <p className="text-text-muted text-[0.875rem]">—</p>
       )}
       {notes.map((note) => (
         <div
           key={note.id}
-          style={{
-            display: "flex",
-            alignItems: "flex-start",
-            justifyContent: "space-between",
-            gap: "1rem",
-            padding: "0.875rem 1rem",
-            background: "var(--bg-surface)",
-            border: "1px solid var(--border-subtle)",
-            borderRadius: "var(--radius-sm)",
-            marginBottom: "0.5rem",
-          }}
+          className="flex items-start justify-between gap-4 px-4 py-3.5 bg-bg-surface border border-border-subtle rounded-lg mb-2"
         >
-          <div style={{ flex: 1 }}>
-            <p style={{ margin: 0, fontSize: "0.9rem", color: "var(--text-primary)" }}>
+          <div className="flex-1">
+            <p className="m-0 text-[0.9rem] text-text-primary">
               {note.text}
             </p>
-            <time
-              style={{ fontSize: "0.7rem", color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}
-            >
+            <time className="text-[0.7rem] text-text-muted font-mono">
               {new Date(note.updatedAt).toLocaleTimeString()}
             </time>
           </div>
@@ -56,7 +44,7 @@ export default function ServerActionsDemo() {
       noteList={
         <Suspense
           fallback={
-            <p style={{ color: "var(--text-muted)", fontSize: "0.875rem", marginTop: "0.5rem" }}>
+            <p className="text-text-muted text-[0.875rem] mt-2">
               ...
             </p>
           }

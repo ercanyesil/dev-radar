@@ -12,19 +12,7 @@ export const metadata = {
 async function SlowComponent({ delay, label }: { delay: number; label: string }) {
   await new Promise((r) => setTimeout(r, delay));
   return (
-    <div
-      style={{
-        background: "rgba(16, 185, 129, 0.1)",
-        border: "1px solid rgba(16, 185, 129, 0.3)",
-        borderRadius: "var(--radius-sm)",
-        padding: "0.875rem 1rem",
-        display: "flex",
-        alignItems: "center",
-        gap: "0.5rem",
-        fontSize: "0.875rem",
-        color: "var(--accent-green)",
-      }}
-    >
+    <div className="bg-[rgba(16,185,129,0.1)] border border-[rgba(16,185,129,0.3)] rounded-lg px-4 py-3.5 flex items-center gap-2 text-[0.875rem] text-accent-green">
       <span>✅</span>
       <span>
         <strong>{label}</strong>
@@ -35,19 +23,7 @@ async function SlowComponent({ delay, label }: { delay: number; label: string })
 
 function SuspenseFallback({ text }: { text: string }) {
   return (
-    <div
-      style={{
-        background: "var(--bg-surface)",
-        border: "1px solid var(--border-subtle)",
-        borderRadius: "var(--radius-sm)",
-        padding: "0.875rem 1rem",
-        fontSize: "0.875rem",
-        color: "var(--text-muted)",
-        display: "flex",
-        gap: "0.5rem",
-        alignItems: "center",
-      }}
-    >
+    <div className="bg-bg-surface border border-border-subtle rounded-lg px-4 py-3.5 text-[0.875rem] text-text-muted flex gap-2 items-center">
       <span className="pulse">⏳</span> {text}
     </div>
   );

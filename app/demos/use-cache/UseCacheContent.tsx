@@ -95,68 +95,62 @@ export default function UseCacheContent({ cachedTimestamp, cachedDashboard }: Us
       docsUrl="https://nextjs.org/docs/app/api-reference/directives/use-cache"
     >
       {/* --- Live demo --- */}
-      <section className="demo-section">
-        <div className="demo-label">{uc.liveLabel}</div>
-        <h2 style={{ fontSize: "1.4rem", marginBottom: "0.75rem" }}>
-          {uc.liveTitle}
-        </h2>
-        <p style={{ marginBottom: "1.5rem" }}>
-          {uc.liveDesc}
-        </p>
+      <section className="mt-10">
+        <div className="flex items-center gap-2 text-[0.72rem] font-bold tracking-widest uppercase text-text-muted mb-2 before:content-[''] before:block before:w-4 before:h-px before:bg-text-muted before:rounded-[1px]">
+          {uc.liveLabel}
+        </div>
+        <h2 className="text-[1.4rem] font-bold mb-3 text-text-primary">{uc.liveTitle}</h2>
+        <p className="mb-6">{uc.liveDesc}</p>
 
-        <div className="demo-interactive" style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+        <div className="bg-bg-surface border border-border-card rounded-[12px] p-8 my-6 flex flex-col gap-4">
           {cachedTimestamp}
           {cachedDashboard}
         </div>
       </section>
 
-      <div className="divider" />
+      <div className="h-px bg-border-subtle my-10" />
 
       {/* --- Basic usage --- */}
-      <section className="demo-section">
-        <div className="demo-label">{uc.basicLabel}</div>
-        <h2 style={{ fontSize: "1.4rem", marginBottom: "0.75rem" }}>
-          {uc.basicTitle}
-        </h2>
-        <p style={{ marginBottom: "1rem" }}>
-          {uc.basicDesc}
-        </p>
+      <section className="mt-10">
+        <div className="flex items-center gap-2 text-[0.72rem] font-bold tracking-widest uppercase text-text-muted mb-2 before:content-[''] before:block before:w-4 before:h-px before:bg-text-muted before:rounded-[1px]">
+          {uc.basicLabel}
+        </div>
+        <h2 className="text-[1.4rem] font-bold mb-3 text-text-primary">{uc.basicTitle}</h2>
+        <p className="mb-4">{uc.basicDesc}</p>
         <CodeBlock code={BASIC_CACHE_CODE} filename="lib/data.ts" language="ts" />
       </section>
 
-      <div className="divider" />
+      <div className="h-px bg-border-subtle my-10" />
 
       {/* --- cacheLife profiles --- */}
-      <section className="demo-section">
-        <div className="demo-label">{uc.profilesLabel}</div>
-        <h2 style={{ fontSize: "1.4rem", marginBottom: "0.75rem" }}>
-          {uc.profilesTitle}
-        </h2>
+      <section className="mt-10">
+        <div className="flex items-center gap-2 text-[0.72rem] font-bold tracking-widest uppercase text-text-muted mb-2 before:content-[''] before:block before:w-4 before:h-px before:bg-text-muted before:rounded-[1px]">
+          {uc.profilesLabel}
+        </div>
+        <h2 className="text-[1.4rem] font-bold mb-3 text-text-primary">{uc.profilesTitle}</h2>
         <CodeBlock code={CACHE_LIFE_CODE} filename="lib/slow-resource.ts" language="ts" />
       </section>
 
-      <div className="divider" />
+      <div className="h-px bg-border-subtle my-10" />
 
       {/* --- Invalidation --- */}
-      <section className="demo-section">
-        <div className="demo-label">{uc.invalidLabel}</div>
-        <h2 style={{ fontSize: "1.4rem", marginBottom: "0.75rem" }}>
-          {uc.invalidTitle}
-        </h2>
+      <section className="mt-10">
+        <div className="flex items-center gap-2 text-[0.72rem] font-bold tracking-widest uppercase text-text-muted mb-2 before:content-[''] before:block before:w-4 before:h-px before:bg-text-muted before:rounded-[1px]">
+          {uc.invalidLabel}
+        </div>
+        <h2 className="text-[1.4rem] font-bold mb-3 text-text-primary">{uc.invalidTitle}</h2>
         <CodeBlock code={INVALIDATION_CODE} filename="app/actions.ts" language="ts" />
       </section>
 
-      <div className="divider" />
+      <div className="h-px bg-border-subtle my-10" />
 
       {/* --- Variants --- */}
-      <section className="demo-section">
-        <div className="demo-label">{uc.variantsLabel}</div>
-        <h2 style={{ fontSize: "1.4rem", marginBottom: "0.75rem" }}>
-          {uc.variantsTitle}
-        </h2>
-        <p style={{ marginBottom: "1rem" }}>
-          {uc.variantsDesc}
-        </p>
+      <section className="mt-10">
+        <div className="flex items-center gap-2 text-[0.72rem] font-bold tracking-widest uppercase text-text-muted mb-2 before:content-[''] before:block before:w-4 before:h-px before:bg-text-muted before:rounded-[1px]">
+          {uc.variantsLabel}
+        </div>
+        <h2 className="text-[1.4rem] font-bold mb-3 text-text-primary">{uc.variantsTitle}</h2>
+        <p className="mb-4">{uc.variantsDesc}</p>
         <CodeBlock code={USE_CACHE_PRIVATE_CODE} filename="lib/personalized.ts" language="ts" />
       </section>
     </DemoLayout>

@@ -10,50 +10,19 @@ interface CodeBlockProps {
  */
 export default function CodeBlock({ code, filename, language = "tsx" }: CodeBlockProps) {
   return (
-    <div
-      style={{
-        borderRadius: "var(--radius-card)",
-        overflow: "hidden",
-        border: "1px solid var(--border-card)",
-        margin: "1.25rem 0",
-      }}
-    >
+    <div className="rounded-[12px] overflow-hidden border border-[var(--color-border-card)] my-5">
       {/* File header */}
       {filename && (
-        <div
-          style={{
-            background: "#0d1020",
-            borderBottom: "1px solid var(--border-subtle)",
-            padding: "0.5rem 1rem",
-            display: "flex",
-            alignItems: "center",
-            gap: "0.5rem",
-          }}
-        >
-          <div style={{ display: "flex", gap: "0.35rem" }}>
-            <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#ff5f57", display: "block" }} />
-            <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#febc2e", display: "block" }} />
-            <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#28c840", display: "block" }} />
+        <div className="bg-[#0d1020] border-b border-[var(--color-border-subtle)] px-4 py-2 flex items-center gap-2">
+          <div className="flex gap-[0.35rem]">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57] block" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e] block" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#28c840] block" />
           </div>
-          <span
-            style={{
-              fontSize: "0.75rem",
-              color: "var(--text-muted)",
-              fontFamily: "var(--font-mono)",
-              marginLeft: "0.5rem",
-            }}
-          >
+          <span className="text-[0.75rem] text-[var(--color-text-muted)] font-mono ml-2">
             {filename}
           </span>
-          <span
-            style={{
-              marginLeft: "auto",
-              fontSize: "0.65rem",
-              color: "var(--text-muted)",
-              textTransform: "uppercase",
-              letterSpacing: "0.05em",
-            }}
-          >
+          <span className="ml-auto text-[0.65rem] text-[var(--color-text-muted)] uppercase tracking-[0.05em]">
             {language}
           </span>
         </div>
@@ -61,15 +30,12 @@ export default function CodeBlock({ code, filename, language = "tsx" }: CodeBloc
 
       {/* Code */}
       <pre
+        className="m-0 bg-[#090c1a]"
         style={{
-          margin: 0,
           borderRadius: filename ? "0 0 var(--radius-sm) var(--radius-sm)" : "var(--radius-sm)",
-          background: "#090c1a",
         }}
       >
-        <code style={{ fontFamily: "var(--font-mono)" }}>
-          {code}
-        </code>
+        <code className="font-mono">{code}</code>
       </pre>
     </div>
   );

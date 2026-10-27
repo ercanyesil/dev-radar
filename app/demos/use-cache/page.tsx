@@ -34,23 +34,14 @@ async function getExpensiveData() {
 async function CachedTimestamp() {
   const time = await getCachedTime();
   return (
-    <div
-      style={{
-        background: "var(--bg-surface)",
-        border: "1px solid var(--border-subtle)",
-        borderRadius: "var(--radius-sm)",
-        padding: "1rem 1.25rem",
-        fontFamily: "var(--font-mono)",
-        fontSize: "0.875rem",
-      }}
-    >
-      <div style={{ color: "var(--text-muted)", fontSize: "0.7rem", marginBottom: "0.25rem" }}>
+    <div className="bg-bg-surface border border-border-subtle rounded-lg px-5 py-4 font-mono text-[0.875rem]">
+      <div className="text-text-muted text-[0.7rem] mb-1">
         getCachedTime() — cacheLife(&apos;seconds&apos;)
       </div>
-      <div style={{ color: "var(--accent-green)", fontWeight: 600 }}>
+      <div className="text-accent-green font-semibold">
         ✅ Cached: {time}
       </div>
-      <div style={{ color: "var(--text-muted)", fontSize: "0.75rem", marginTop: "0.25rem" }}>
+      <div className="text-text-muted text-[0.75rem] mt-1">
         Reload the page — this value is cached for ~1 second server-side.
       </div>
     </div>
@@ -60,7 +51,7 @@ async function CachedTimestamp() {
 async function CachedDashboard() {
   const data = await getExpensiveData();
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "0.75rem" }}>
+    <div className="grid grid-cols-3 gap-3">
       {[
         { label: "Posts", value: data.posts, icon: "📝" },
         { label: "Users", value: data.users, icon: "👤" },
@@ -68,31 +59,14 @@ async function CachedDashboard() {
       ].map((item) => (
         <div
           key={item.label}
-          style={{
-            background: "var(--bg-surface)",
-            border: "1px solid var(--border-subtle)",
-            borderRadius: "var(--radius-sm)",
-            padding: "1rem",
-            textAlign: "center",
-          }}
+          className="bg-bg-surface border border-border-subtle rounded-lg p-4 text-center"
         >
-          <div style={{ fontSize: "1.5rem", marginBottom: "0.25rem" }}>{item.icon}</div>
-          <div style={{ fontSize: "1.25rem", fontWeight: 700, color: "var(--text-primary)" }}>
-            {item.value}
-          </div>
-          <div style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>{item.label}</div>
+          <div className="text-[1.5rem] mb-1">{item.icon}</div>
+          <div className="text-[1.25rem] font-bold text-text-primary">{item.value}</div>
+          <div className="text-[0.75rem] text-text-muted">{item.label}</div>
         </div>
       ))}
-      <div
-        style={{
-          gridColumn: "1 / -1",
-          fontSize: "0.7rem",
-          fontFamily: "var(--font-mono)",
-          color: "var(--text-muted)",
-          textAlign: "center",
-          paddingTop: "0.25rem",
-        }}
-      >
+      <div className="col-span-3 text-[0.7rem] font-mono text-text-muted text-center pt-1">
         cacheLife(&apos;hours&apos;) · fetchedAt: {data.fetchedAt}
       </div>
     </div>
@@ -108,9 +82,7 @@ export default function UseCacheDemo() {
       cachedTimestamp={
         <Suspense
           fallback={
-            <div style={{ color: "var(--text-muted)", fontSize: "0.875rem" }}>
-              ⏳ ...
-            </div>
+            <div className="text-text-muted text-[0.875rem]">⏳ ...</div>
           }
         >
           <CachedTimestamp />
@@ -119,9 +91,7 @@ export default function UseCacheDemo() {
       cachedDashboard={
         <Suspense
           fallback={
-            <div style={{ color: "var(--text-muted)", fontSize: "0.875rem" }}>
-              ⏳ ...
-            </div>
+            <div className="text-text-muted text-[0.875rem]">⏳ ...</div>
           }
         >
           <CachedDashboard />

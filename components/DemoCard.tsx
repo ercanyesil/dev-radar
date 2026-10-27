@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 interface DemoCardProps {
   href: string;
@@ -11,6 +12,13 @@ interface DemoCardProps {
   viewDemoLabel?: string;
 }
 
+const badgeStyles: Record<string, string> = {
+  react: "bg-[rgba(6,182,212,0.12)] border border-[rgba(6,182,212,0.25)] text-[var(--color-accent-cyan)]",
+  next: "bg-[rgba(255,255,255,0.07)] border border-[rgba(255,255,255,0.15)] text-[var(--color-text-secondary)]",
+  new: "bg-[rgba(34,197,94,0.12)] border border-[rgba(34,197,94,0.25)] text-[var(--color-accent-green)]",
+  stable: "bg-[rgba(245,158,11,0.12)] border border-[rgba(245,158,11,0.25)] text-[var(--color-accent-amber)]",
+};
+
 export default function DemoCard({
   href,
   icon,
@@ -18,119 +26,73 @@ export default function DemoCard({
   description,
   tags,
   version,
-  accentColor = "var(--accent-primary)",
+  accentColor = "var(--color-accent-primary)",
   viewDemoLabel = "View demo",
 }: DemoCardProps) {
-  const badgeClass: Record<string, string> = {
-    react: "badge-react",
-    next: "badge-next",
-    new: "badge-new",
-    stable: "badge-stable",
-  };
-
   return (
-    <Link href={href} style={{ textDecoration: "none" }}>
+    <Link href={href} className="no-underline">
       <article
-        className="glass-card"
-        style={{
-          padding: "1.75rem",
-          height: "100%",
-          position: "relative",
-          overflow: "hidden",
-          cursor: "pointer",
-        }}
+        className={cn(
+          "relative overflow-hidden cursor-pointer h-full p-7",
+          "bg-[var(--color-bg-card)] border border-[var(--color-border-card)] rounded-[12px]",
+          "shadow-[var(--shadow-glow-primary)]",
+          "transition-[border-color,box-shadow,transform] duration-[250ms]",
+          "hover:border-[var(--color-border-hover)] hover:shadow-[var(--shadow-glow-hover)] hover:-translate-y-0.5"
+        )}
       >
         {/* Background glow orb */}
         <div
           aria-hidden
+          className="absolute pointer-events-none rounded-full blur-[40px] opacity-[0.06]"
           style={{
-            position: "absolute",
             top: -40,
             right: -40,
             width: 160,
             height: 160,
-            borderRadius: "50%",
             background: accentColor,
-            opacity: 0.06,
-            filter: "blur(40px)",
-            pointerEvents: "none",
           }}
         />
 
         {/* Version tag */}
         <div
-          style={{
-            position: "absolute",
-            top: "1.25rem",
-            right: "1.25rem",
-            fontSize: "0.7rem",
-            fontFamily: "var(--font-mono)",
-            color: "var(--text-muted)",
-            background: "rgba(255,255,255,0.04)",
-            border: "1px solid var(--border-subtle)",
-            borderRadius: 4,
-            padding: "0.15rem 0.4rem",
-          }}
+          className="absolute top-5 right-5 text-[0.7rem] font-mono text-[var(--color-text-muted)] bg-[rgba(255,255,255,0.04)] border border-[var(--color-border-subtle)] rounded-[4px] px-[0.4rem] py-[0.15rem]"
         >
           {version}
         </div>
 
         {/* Icon */}
-        <div
-          style={{
-            fontSize: "2rem",
-            marginBottom: "1rem",
-            lineHeight: 1,
-          }}
-        >
-          {icon}
-        </div>
+        <div className="text-[2rem] mb-4 leading-none">{icon}</div>
 
         {/* Title */}
-        <h2
-          style={{
-            fontSize: "1.1rem",
-            fontWeight: 700,
-            marginBottom: "0.5rem",
-            letterSpacing: "-0.02em",
-            color: "var(--text-primary)",
-          }}
-        >
+        <h2 className="text-[1.1rem] font-bold mb-2 tracking-[-0.02em] text-[var(--color-text-primary)]">
           {title}
         </h2>
 
         {/* Description */}
-        <p
-          style={{
-            fontSize: "0.875rem",
-            color: "var(--text-secondary)",
-            lineHeight: 1.6,
-            marginBottom: "1.25rem",
-          }}
-        >
+        <p className="text-[0.875rem] text-[var(--color-text-secondary)] leading-[1.6] mb-5">
           {description}
         </p>
 
         {/* Tags */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.375rem" }}>
+        <div className="flex flex-wrap gap-1.5">
           {tags.map((tag) => (
-            <span key={tag.label} className={`badge ${badgeClass[tag.type]}`}>
+            <span
+              key={tag.label}
+              className={cn(
+                "inline-flex items-center gap-1 px-2.5 py-[0.2rem] rounded-full",
+                "text-[0.7rem] font-semibold tracking-[0.03em] uppercase",
+                badgeStyles[tag.type]
+              )}
+            >
               {tag.label}
             </span>
           ))}
         </div>
 
-        {/* Arrow */}
+        {/* Arrow / CTA */}
         <div
-          style={{
-            marginTop: "1.5rem",
-            display: "flex",
-            alignItems: "center",
-            gap: "0.375rem",
-            fontSize: "0.8rem",
-            fontWeight: 600,
-            color: accentColor,
-          }}
+          className="mt-6 flex items-center gap-1.5 text-[0.8rem] font-semibold"
+          style={{ color: accentColor }}
         >
           {viewDemoLabel}
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">

@@ -5,6 +5,7 @@ import CodeBlock from "@/components/CodeBlock";
 import NoteForm from "./NoteForm";
 import { useT } from "@/lib/i18n/context";
 import type { ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
 const ACTION_CODE = `// app/demos/server-actions/actions.ts
 'use server'
@@ -97,78 +98,54 @@ export default function ServerActionsContent({ noteList }: ServerActionsContentP
       docsUrl="https://nextjs.org/docs/app/guides/server-actions"
     >
       {/* --- Interactive Demo --- */}
-      <section className="demo-section">
-        <div className="demo-label">{sa.liveLabel}</div>
-        <h2 style={{ fontSize: "1.4rem", marginBottom: "0.75rem" }}>
-          {sa.liveTitle}
-        </h2>
-        <p style={{ marginBottom: "1.5rem" }}
-          dangerouslySetInnerHTML={{ __html: sa.liveDesc }}
-        />
+      <section className="mt-10">
+        <div className="flex items-center gap-2 text-[0.72rem] font-bold tracking-widest uppercase text-text-muted mb-2 before:content-[''] before:block before:w-4 before:h-px before:bg-text-muted before:rounded-[1px]">
+          {sa.liveLabel}
+        </div>
+        <h2 className="text-[1.4rem] font-bold mb-3 text-text-primary">{sa.liveTitle}</h2>
+        <p className="mb-6" dangerouslySetInnerHTML={{ __html: sa.liveDesc }} />
 
-        <div className="demo-interactive">
+        <div className="bg-bg-surface border border-border-card rounded-[12px] p-8 my-6">
           <NoteForm />
           {noteList}
         </div>
       </section>
 
-      <div className="divider" />
+      <div className="h-px bg-border-subtle my-10" />
 
       {/* --- Key API comparison --- */}
-      <section className="demo-section">
-        <div className="demo-label">{sa.compLabel}</div>
-        <h2 style={{ fontSize: "1.4rem", marginBottom: "0.75rem" }}>
-          {sa.compTitle}
-        </h2>
+      <section className="mt-10">
+        <div className="flex items-center gap-2 text-[0.72rem] font-bold tracking-widest uppercase text-text-muted mb-2 before:content-[''] before:block before:w-4 before:h-px before:bg-text-muted before:rounded-[1px]">
+          {sa.compLabel}
+        </div>
+        <h2 className="text-[1.4rem] font-bold mb-3 text-text-primary">{sa.compTitle}</h2>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
-            gap: "1rem",
-            marginBottom: "1.5rem",
-          }}
-        >
+        <div className="grid gap-4 mb-6" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))" }}>
           {sa.comparison.map((item, i) => {
             const colors = [
-              "var(--accent-green)",
-              "var(--accent-amber)",
-              "var(--accent-cyan)",
+              "var(--color-accent-green)",
+              "var(--color-accent-amber)",
+              "var(--color-accent-cyan)",
             ];
-            const color = colors[i] ?? "var(--accent-primary)";
+            const color = colors[i] ?? "var(--color-accent-primary)";
             return (
               <div
                 key={item.fn}
-                style={{
-                  background: "var(--bg-surface)",
-                  border: `1px solid ${color}30`,
-                  borderRadius: "var(--radius-sm)",
-                  padding: "1.25rem",
-                }}
+                className="bg-bg-surface rounded-lg p-5"
+                style={{ border: `1px solid ${color}30` }}
               >
-                <div style={{ fontSize: "1.5rem", marginBottom: "0.5rem" }}>{item.icon}</div>
+                <div className="text-[1.5rem] mb-2">{item.icon}</div>
                 <code
-                  style={{
-                    color,
-                    background: "none",
-                    border: "none",
-                    padding: 0,
-                    fontSize: "0.8rem",
-                    fontWeight: 700,
-                  }}
+                  className="text-[0.8rem] font-bold bg-transparent border-none p-0"
+                  style={{ color }}
                 >
                   {item.fn}
                 </code>
-                <p style={{ fontSize: "0.8rem", marginTop: "0.5rem", marginBottom: "0.5rem" }}>
-                  <strong style={{ color: "var(--text-primary)" }}>
-                    {/* "Use when:" stays same in context */}
-                    Use when:
-                  </strong>{" "}
+                <p className="text-[0.8rem] mt-2 mb-2">
+                  <strong className="text-text-primary">Use when:</strong>{" "}
                   {item.when}
                 </p>
-                <p style={{ fontSize: "0.75rem", color: "var(--text-muted)", margin: 0 }}>
-                  {item.behavior}
-                </p>
+                <p className="text-[0.75rem] text-text-muted m-0">{item.behavior}</p>
               </div>
             );
           })}
@@ -177,31 +154,27 @@ export default function ServerActionsContent({ noteList }: ServerActionsContentP
         <CodeBlock code={ACTION_CODE} filename="app/demos/server-actions/actions.ts" language="ts" />
       </section>
 
-      <div className="divider" />
+      <div className="h-px bg-border-subtle my-10" />
 
       {/* --- Single roundtrip --- */}
-      <section className="demo-section">
-        <div className="demo-label">{sa.archLabel}</div>
-        <h2 style={{ fontSize: "1.4rem", marginBottom: "0.75rem" }}>
-          {sa.archTitle}
-        </h2>
-        <p style={{ marginBottom: "1rem" }}
-          dangerouslySetInnerHTML={{ __html: sa.archDesc }}
-        />
+      <section className="mt-10">
+        <div className="flex items-center gap-2 text-[0.72rem] font-bold tracking-widest uppercase text-text-muted mb-2 before:content-[''] before:block before:w-4 before:h-px before:bg-text-muted before:rounded-[1px]">
+          {sa.archLabel}
+        </div>
+        <h2 className="text-[1.4rem] font-bold mb-3 text-text-primary">{sa.archTitle}</h2>
+        <p className="mb-4" dangerouslySetInnerHTML={{ __html: sa.archDesc }} />
         <CodeBlock code={SINGLE_ROUNDTRIP_CODE} filename="app/posts/actions.ts" language="ts" />
       </section>
 
-      <div className="divider" />
+      <div className="h-px bg-border-subtle my-10" />
 
       {/* --- Security --- */}
-      <section className="demo-section">
-        <div className="demo-label">{sa.secLabel}</div>
-        <h2 style={{ fontSize: "1.4rem", marginBottom: "0.75rem" }}>
-          {sa.secTitle}
-        </h2>
-        <p style={{ marginBottom: "1rem" }}>
-          {sa.secDesc}
-        </p>
+      <section className="mt-10">
+        <div className="flex items-center gap-2 text-[0.72rem] font-bold tracking-widest uppercase text-text-muted mb-2 before:content-[''] before:block before:w-4 before:h-px before:bg-text-muted before:rounded-[1px]">
+          {sa.secLabel}
+        </div>
+        <h2 className="text-[1.4rem] font-bold mb-3 text-text-primary">{sa.secTitle}</h2>
+        <p className="mb-4">{sa.secDesc}</p>
         <CodeBlock code={SECURITY_CODE} filename="app/posts/actions.ts" language="ts" />
       </section>
     </DemoLayout>

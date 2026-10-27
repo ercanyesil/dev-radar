@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useEffectEvent } from "react";
 import DemoLayout from "@/components/DemoLayout";
 import CodeBlock from "@/components/CodeBlock";
 import { useT } from "@/lib/i18n/context";
+import { cn } from "@/lib/utils";
 
 const PROBLEM_CODE = `// ❌ PROBLEM: stale closure bug
 // 'url' must be in the dependency array → re-runs on every URL change
@@ -82,19 +83,23 @@ function ScrollLogger() {
   }, []);
 
   return (
-    <div className="demo-interactive">
-      <div style={{ marginBottom: "1.25rem" }}>
-        <label style={{ display: "block", marginBottom: "0.5rem" }}>
+    <div className="bg-bg-surface border border-border-card rounded-[12px] p-8 my-6">
+      <div className="mb-5">
+        <label className="block mb-2 text-[0.875rem] font-semibold text-(--color-text-secondary)">
           {uee.urlLabel}
         </label>
-        <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+        <div className="flex gap-2 flex-wrap">
           {["/home", "/dashboard", "/profile"].map((u) => (
             <button
               key={u}
               id={`url-btn-${u.slice(1)}`}
               onClick={() => setUrl(u)}
-              className={url === u ? "btn-primary" : "btn-ghost"}
-              style={{ padding: "0.4rem 0.875rem", fontSize: "0.8rem" }}
+              className={cn(
+                "px-3.5 py-[0.4rem] text-[0.8rem] rounded-lg transition-[opacity,transform] duration-200",
+                url === u
+                  ? "bg-text-primary text-bg-base border-none font-semibold cursor-pointer font-sans tracking-[-0.01em] hover:opacity-[0.88] hover:-translate-y-px active:translate-y-0"
+                  : "bg-transparent text-(--color-text-secondary) border border-border-card font-medium cursor-pointer transition-[color,border-color,background] hover:text-text-primary hover:border-border-hover hover:bg-[rgba(255,255,255,0.04)]"
+              )}
             >
               {u}
             </button>
@@ -102,34 +107,26 @@ function ScrollLogger() {
         </div>
       </div>
 
-      <div
-        style={{
-          background: "var(--bg-base)",
-          borderRadius: "var(--radius-sm)",
-          border: "1px solid var(--border-subtle)",
-          padding: "1rem",
-          fontFamily: "var(--font-mono)",
-          fontSize: "0.75rem",
-        }}
-      >
-        <div style={{ color: "var(--accent-primary)", marginBottom: "0.5rem", fontWeight: 600 }}>
-          {uee.logTitle}
-        </div>
-        <div style={{ color: "var(--text-muted)", marginBottom: "0.5rem" }}>
+      <div className="bg-bg-base rounded-lg border border-border-subtle p-4 font-mono text-[0.75rem]">
+        <div className="text-accent-primary mb-2 font-semibold">{uee.logTitle}</div>
+        <div className="text-text-muted mb-2">
           {uee.logCurrent}: {scrollY}px · {uee.logActive}:{" "}
-          <span style={{ color: "var(--accent-cyan)" }}>{url}</span>
+          <span className="text-accent-cyan">{url}</span>
         </div>
         {logs.length === 0 ? (
-          <div style={{ color: "var(--text-muted)" }}>{uee.logEmpty}</div>
+          <div className="text-text-muted">{uee.logEmpty}</div>
         ) : (
           logs.map((log, i) => (
-            <div key={i} style={{ color: i === 0 ? "var(--text-accent)" : "var(--text-muted)" }}>
+            <div
+              key={i}
+              className={i === 0 ? "text-text-accent" : "text-text-muted"}
+            >
               {log}
             </div>
           ))
         )}
       </div>
-      <p style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginTop: "0.75rem" }}>
+      <p className="text-[0.75rem] text-text-muted mt-3">
         ✅ {uee.logHint}
       </p>
     </div>
@@ -153,70 +150,53 @@ export default function UseEffectEventDemo() {
       docsUrl="https://react.dev/reference/react/useEffectEvent"
     >
       {/* --- The Problem --- */}
-      <section className="demo-section">
-        <div className="demo-label">{uee.problemLabel}</div>
-        <h2 style={{ fontSize: "1.4rem", marginBottom: "0.75rem" }}>
-          {uee.problemTitle}
-        </h2>
-        <p style={{ marginBottom: "1rem" }}>
-          {uee.problemDesc}
-        </p>
+      <section className="mt-10">
+        <div className="flex items-center gap-2 text-[0.72rem] font-bold tracking-widest uppercase text-text-muted mb-2 before:content-[''] before:block before:w-4 before:h-px before:bg-text-muted before:rounded-[1px]">
+          {uee.problemLabel}
+        </div>
+        <h2 className="text-[1.4rem] font-bold mb-3 text-text-primary">{uee.problemTitle}</h2>
+        <p className="mb-4">{uee.problemDesc}</p>
         <CodeBlock code={PROBLEM_CODE} filename="hooks/useAnalytics.ts" language="ts" />
       </section>
 
-      <div className="divider" />
+      <div className="h-px bg-border-subtle my-10" />
 
       {/* --- The Solution --- */}
-      <section className="demo-section">
-        <div className="demo-label">{uee.solutionLabel}</div>
-        <h2 style={{ fontSize: "1.4rem", marginBottom: "0.75rem" }}>
-          {uee.solutionTitle}
-        </h2>
-        <p style={{ marginBottom: "1rem" }}
-          dangerouslySetInnerHTML={{ __html: uee.solutionDesc }}
-        />
+      <section className="mt-10">
+        <div className="flex items-center gap-2 text-[0.72rem] font-bold tracking-widest uppercase text-text-muted mb-2 before:content-[''] before:block before:w-4 before:h-px before:bg-text-muted before:rounded-[1px]">
+          {uee.solutionLabel}
+        </div>
+        <h2 className="text-[1.4rem] font-bold mb-3 text-text-primary">{uee.solutionTitle}</h2>
+        <p className="mb-4" dangerouslySetInnerHTML={{ __html: uee.solutionDesc }} />
         <CodeBlock code={SOLUTION_CODE} filename="hooks/useAnalytics.ts" language="ts" />
       </section>
 
-      <div className="divider" />
+      <div className="h-px bg-border-subtle my-10" />
 
       {/* --- Live Demo --- */}
-      <section className="demo-section">
-        <div className="demo-label">{uee.demoLabel}</div>
-        <h2 style={{ fontSize: "1.4rem", marginBottom: "0.75rem" }}>
-          {uee.demoTitle}
-        </h2>
-        <p style={{ marginBottom: "1.25rem" }}>
-          {uee.demoDesc}
-        </p>
+      <section className="mt-10">
+        <div className="flex items-center gap-2 text-[0.72rem] font-bold tracking-widest uppercase text-text-muted mb-2 before:content-[''] before:block before:w-4 before:h-px before:bg-text-muted before:rounded-[1px]">
+          {uee.demoLabel}
+        </div>
+        <h2 className="text-[1.4rem] font-bold mb-3 text-text-primary">{uee.demoTitle}</h2>
+        <p className="mb-5">{uee.demoDesc}</p>
         <ScrollLogger />
       </section>
 
-      <div className="divider" />
+      <div className="h-px bg-border-subtle my-10" />
 
       {/* --- Rules --- */}
-      <section className="demo-section">
-        <div className="demo-label">{uee.rulesLabel}</div>
-        <h2 style={{ fontSize: "1.4rem", marginBottom: "0.75rem" }}>
-          {uee.rulesTitle}
-        </h2>
+      <section className="mt-10">
+        <div className="flex items-center gap-2 text-[0.72rem] font-bold tracking-widest uppercase text-text-muted mb-2 before:content-[''] before:block before:w-4 before:h-px before:bg-text-muted before:rounded-[1px]">
+          {uee.rulesLabel}
+        </div>
+        <h2 className="text-[1.4rem] font-bold mb-3 text-text-primary">{uee.rulesTitle}</h2>
         <CodeBlock code={RULES_CODE} filename="hooks/useTimer.ts" language="ts" />
 
         {/* Key insight */}
-        <div
-          style={{
-            background: "rgba(245, 158, 11, 0.08)",
-            border: "1px solid rgba(245, 158, 11, 0.2)",
-            borderRadius: "var(--radius-sm)",
-            padding: "1rem 1.25rem",
-            marginTop: "1rem",
-            fontSize: "0.875rem",
-          }}
-        >
-          <strong style={{ color: "var(--accent-amber)" }}>{uee.insightTitle}</strong>{" "}
-          <span style={{ color: "var(--text-secondary)" }}>
-            {uee.insightText}
-          </span>
+        <div className="bg-[rgba(245,158,11,0.08)] border border-[rgba(245,158,11,0.2)] rounded-lg px-5 py-4 mt-4 text-[0.875rem]">
+          <strong className="text-accent-amber">{uee.insightTitle}</strong>{" "}
+          <span className="text-(--color-text-secondary)">{uee.insightText}</span>
         </div>
       </section>
     </DemoLayout>

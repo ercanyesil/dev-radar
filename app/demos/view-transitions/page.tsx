@@ -5,6 +5,7 @@ import { useState } from "react";
 import DemoLayout from "@/components/DemoLayout";
 import CodeBlock from "@/components/CodeBlock";
 import { useT } from "@/lib/i18n/context";
+import { cn } from "@/lib/utils";
 
 const PHOTOS = [
   { id: "1", emoji: "🌄", color: "#6366f1" },
@@ -92,43 +93,37 @@ export default function ViewTransitionsDemo() {
       docsUrl="https://react.dev/reference/react/ViewTransition"
     >
       {/* --- Pattern 1: Shared element morph --- */}
-      <section className="demo-section">
-        <div className="demo-label">{vt.p1Label}</div>
-        <h2 style={{ fontSize: "1.4rem", marginBottom: "0.75rem" }}>
-          {vt.p1Title}
-        </h2>
-        <p style={{ marginBottom: "1.5rem" }}
-          dangerouslySetInnerHTML={{ __html: vt.p1Desc }}
-        />
+      <section className="mt-10">
+        <div className="flex items-center gap-2 text-[0.72rem] font-bold tracking-widest uppercase text-text-muted mb-2 before:content-[''] before:block before:w-4 before:h-px before:bg-text-muted before:rounded-[1px]">
+          {vt.p1Label}
+        </div>
+        <h2 className="text-[1.4rem] font-bold mb-3 text-text-primary">{vt.p1Title}</h2>
+        <p className="mb-6" dangerouslySetInnerHTML={{ __html: vt.p1Desc }} />
 
         {/* Interactive demo */}
-        <div className="demo-interactive">
+        <div className="bg-bg-surface border border-border-card rounded-[12px] p-8 my-6">
           {selected ? (
             /* Detail view */
-            <div style={{ textAlign: "center" }}>
+            <div className="text-center">
               <ViewTransition name={`photo-${selected}`}>
                 <div
-                  style={{
-                    width: 160,
-                    height: 160,
-                    borderRadius: 16,
-                    background: PHOTOS.find((p) => p.id === selected)?.color,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "5rem",
-                    margin: "0 auto 1rem",
-                  }}
+                  className="w-40 h-40 rounded-2xl flex items-center justify-center text-[5rem] mx-auto mb-4"
+                  style={{ background: PHOTOS.find((p) => p.id === selected)?.color }}
                 >
                   {PHOTOS.find((p) => p.id === selected)?.emoji}
                 </div>
               </ViewTransition>
-              <p style={{ fontSize: "0.875rem", marginBottom: "1.5rem" }}>
+              <p className="text-[0.875rem] mb-6">
                 {vt.detailNote}{" "}
-                <code>{"<ViewTransition name={`photo-${id}`}>"}</code>
+                <code>{`<ViewTransition name={\`photo-\${id}\`}>`}</code>
               </p>
               <button
-                className="btn-ghost"
+                className={cn(
+                  "inline-flex items-center gap-2 px-[1.1rem] py-[0.55rem]",
+                  "bg-transparent text-(--color-text-secondary) border border-border-card rounded-lg",
+                  "text-[0.85rem] font-medium cursor-pointer transition-[color,border-color,background] duration-200",
+                  "hover:text-text-primary hover:border-border-hover hover:bg-[rgba(255,255,255,0.04)]"
+                )}
                 onClick={() => setSelected(null)}
                 id="vt-back-btn"
               >
@@ -138,44 +133,19 @@ export default function ViewTransitionsDemo() {
           ) : (
             /* Grid view */
             <div>
-              <p style={{ fontSize: "0.8rem", color: "var(--text-muted)", marginBottom: "1rem" }}>
-                {vt.gridHint}
-              </p>
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(3, 1fr)",
-                  gap: "0.75rem",
-                }}
-              >
+              <p className="text-[0.8rem] text-text-muted mb-4">{vt.gridHint}</p>
+              <div className="grid grid-cols-3 gap-3">
                 {PHOTOS.map((photo) => (
                   <button
                     key={photo.id}
                     id={`photo-card-${photo.id}`}
                     onClick={() => setSelected(photo.id)}
-                    style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}
+                    className="bg-transparent border-none cursor-pointer p-0"
                   >
                     <ViewTransition name={`photo-${photo.id}`}>
                       <div
-                        style={{
-                          borderRadius: 12,
-                          background: photo.color,
-                          aspectRatio: "1",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          fontSize: "2.5rem",
-                          opacity: 0.9,
-                          transition: "opacity 0.2s, transform 0.2s",
-                        }}
-                        onMouseEnter={(e) => {
-                          (e.currentTarget as HTMLElement).style.opacity = "1";
-                          (e.currentTarget as HTMLElement).style.transform = "scale(1.04)";
-                        }}
-                        onMouseLeave={(e) => {
-                          (e.currentTarget as HTMLElement).style.opacity = "0.9";
-                          (e.currentTarget as HTMLElement).style.transform = "scale(1)";
-                        }}
+                        className="rounded-[12px] aspect-square flex items-center justify-center text-[2.5rem] opacity-90 transition-[opacity,transform] duration-200 hover:opacity-100 hover:scale-[1.04]"
+                        style={{ background: photo.color }}
                       >
                         {photo.emoji}
                       </div>
@@ -191,31 +161,21 @@ export default function ViewTransitionsDemo() {
         <CodeBlock code={DETAIL_CODE} filename="app/photo/[id]/photo-content.tsx" language="tsx" />
       </section>
 
-      <div className="divider" />
+      <div className="h-px bg-border-subtle my-10" />
 
       {/* --- Pattern 2: Directional nav --- */}
-      <section className="demo-section">
-        <div className="demo-label">{vt.p2Label}</div>
-        <h2 style={{ fontSize: "1.4rem", marginBottom: "0.75rem" }}>
-          {vt.p2Title}
-        </h2>
-        <p style={{ marginBottom: "1rem" }}
-          dangerouslySetInnerHTML={{ __html: vt.p2Desc }}
-        />
+      <section className="mt-10">
+        <div className="flex items-center gap-2 text-[0.72rem] font-bold tracking-widest uppercase text-text-muted mb-2 before:content-[''] before:block before:w-4 before:h-px before:bg-text-muted before:rounded-[1px]">
+          {vt.p2Label}
+        </div>
+        <h2 className="text-[1.4rem] font-bold mb-3 text-text-primary">{vt.p2Title}</h2>
+        <p className="mb-4" dangerouslySetInnerHTML={{ __html: vt.p2Desc }} />
 
         {/* Key insight box */}
-        <div
-          style={{
-            background: "rgba(99, 102, 241, 0.08)",
-            border: "1px solid rgba(99, 102, 241, 0.2)",
-            borderRadius: "var(--radius-sm)",
-            padding: "1rem 1.25rem",
-            marginBottom: "1rem",
-            fontSize: "0.875rem",
-          }}
-        >
-          <strong style={{ color: "var(--text-accent)" }}>{vt.insightTitle}</strong>{" "}
-          <span style={{ color: "var(--text-secondary)" }}
+        <div className="bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.2)] rounded-lg px-5 py-4 mb-4 text-[0.875rem]">
+          <strong className="text-text-accent">{vt.insightTitle}</strong>{" "}
+          <span
+            className="text-(--color-text-secondary)"
             dangerouslySetInnerHTML={{ __html: vt.insightText }}
           />
         </div>
@@ -223,17 +183,15 @@ export default function ViewTransitionsDemo() {
         <CodeBlock code={NAV_CODE} filename="app/photo/[id]/page.tsx" language="tsx" />
       </section>
 
-      <div className="divider" />
+      <div className="h-px bg-border-subtle my-10" />
 
       {/* --- Pattern 3: CSS keyframes summary --- */}
-      <section className="demo-section">
-        <div className="demo-label">{vt.p3Label}</div>
-        <h2 style={{ fontSize: "1.4rem", marginBottom: "0.75rem" }}>
-          {vt.p3Title}
-        </h2>
-        <p style={{ marginBottom: "1rem" }}
-          dangerouslySetInnerHTML={{ __html: vt.p3Desc }}
-        />
+      <section className="mt-10">
+        <div className="flex items-center gap-2 text-[0.72rem] font-bold tracking-widest uppercase text-text-muted mb-2 before:content-[''] before:block before:w-4 before:h-px before:bg-text-muted before:rounded-[1px]">
+          {vt.p3Label}
+        </div>
+        <h2 className="text-[1.4rem] font-bold mb-3 text-text-primary">{vt.p3Title}</h2>
+        <p className="mb-4" dangerouslySetInnerHTML={{ __html: vt.p3Desc }} />
         <CodeBlock
           code={`/* globals.css */
 ::view-transition-old(.nav-forward) {
@@ -264,27 +222,12 @@ export default function ViewTransitionsDemo() {
       </section>
 
       {/* Key facts */}
-      <section className="demo-section">
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
-            gap: "1rem",
-          }}
-        >
+      <section className="mt-10">
+        <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))" }}>
           {(["✅", "⚡", "🎨", "🛡️"] as const).map((icon, i) => (
             <div
               key={i}
-              style={{
-                background: "var(--bg-surface)",
-                border: "1px solid var(--border-subtle)",
-                borderRadius: "var(--radius-sm)",
-                padding: "1rem",
-                fontSize: "0.875rem",
-                color: "var(--text-secondary)",
-                display: "flex",
-                gap: "0.5rem",
-              }}
+              className="bg-bg-surface border border-border-subtle rounded-lg p-4 text-[0.875rem] text-(--color-text-secondary) flex gap-2"
             >
               <span>{icon}</span>
               <span>{vt.facts[i]}</span>

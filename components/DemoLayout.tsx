@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useT } from "@/lib/i18n/context";
+import { cn } from "@/lib/utils";
 
 interface DemoLayoutProps {
   title: string;
@@ -11,6 +12,13 @@ interface DemoLayoutProps {
   docsUrl?: string;
   children: React.ReactNode;
 }
+
+const badgeStyles: Record<string, string> = {
+  react: "bg-[rgba(6,182,212,0.12)] border border-[rgba(6,182,212,0.25)] text-[var(--color-accent-cyan)]",
+  next: "bg-[rgba(255,255,255,0.07)] border border-[rgba(255,255,255,0.15)] text-[var(--color-text-secondary)]",
+  new: "bg-[rgba(34,197,94,0.12)] border border-[rgba(34,197,94,0.25)] text-[var(--color-accent-green)]",
+  stable: "bg-[rgba(245,158,11,0.12)] border border-[rgba(245,158,11,0.25)] text-[var(--color-accent-amber)]",
+};
 
 export default function DemoLayout({
   title,
@@ -22,36 +30,34 @@ export default function DemoLayout({
 }: DemoLayoutProps) {
   const { t } = useT();
 
-  const badgeClass: Record<string, string> = {
-    react: "badge-react",
-    next: "badge-next",
-    new: "badge-new",
-    stable: "badge-stable",
-  };
-
   return (
-    <main className="demo-page">
+    <main className="min-h-screen pt-[5.25rem] px-8 pb-16 max-w-[900px] mx-auto">
       {/* Header */}
-      <header style={{ marginBottom: "2.5rem" }}>
-        <div className="demo-label">{subtitle}</div>
+      <header className="mb-10">
+        {/* Demo label */}
+        <div className="flex items-center gap-2 text-[0.72rem] font-bold tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-2 before:content-[''] before:block before:w-4 before:h-px before:bg-[var(--color-text-muted)] before:rounded-[1px]">
+          {subtitle}
+        </div>
+
         <h1
-          style={{
-            fontSize: "clamp(2rem, 5vw, 3rem)",
-            fontWeight: 800,
-            letterSpacing: "-0.03em",
-            marginBottom: "1rem",
-            lineHeight: 1.1,
-          }}
-          className="gradient-text"
+          className="gradient-text font-extrabold tracking-[-0.03em] leading-[1.1] mb-4"
+          style={{ fontSize: "clamp(2rem, 5vw, 3rem)" }}
         >
           {title}
         </h1>
-        <p style={{ fontSize: "1.05rem", maxWidth: 640, marginBottom: "1.25rem" }}>
-          {description}
-        </p>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", alignItems: "center" }}>
+
+        <p className="text-[1.05rem] max-w-[640px] mb-5">{description}</p>
+
+        <div className="flex flex-wrap gap-2 items-center">
           {tags.map((tag) => (
-            <span key={tag.label} className={`badge ${badgeClass[tag.type]}`}>
+            <span
+              key={tag.label}
+              className={cn(
+                "inline-flex items-center gap-1 px-2.5 py-[0.2rem] rounded-full",
+                "text-[0.7rem] font-semibold tracking-[0.03em] uppercase",
+                badgeStyles[tag.type]
+              )}
+            >
               {tag.label}
             </span>
           ))}
@@ -60,14 +66,7 @@ export default function DemoLayout({
               href={docsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                fontSize: "0.75rem",
-                color: "var(--text-muted)",
-                marginLeft: "0.5rem",
-                display: "flex",
-                alignItems: "center",
-                gap: "0.25rem",
-              }}
+              className="text-[0.75rem] text-[var(--color-text-muted)] ml-2 flex items-center gap-1"
             >
               {t.layout.docs}
             </a>
@@ -75,15 +74,26 @@ export default function DemoLayout({
         </div>
       </header>
 
-      <div className="divider" />
+      {/* Divider */}
+      <div className="h-px bg-[var(--color-border-subtle)] my-10" />
 
       {children}
 
-      <div className="divider" />
+      {/* Divider */}
+      <div className="h-px bg-[var(--color-border-subtle)] my-10" />
 
       {/* Footer nav */}
-      <div style={{ textAlign: "center", paddingTop: "1rem" }}>
-        <Link href="/" className="btn-ghost">
+      <div className="text-center pt-4">
+        <Link
+          href="/articles"
+          className={cn(
+            "inline-flex items-center gap-2 px-[1.1rem] py-[0.55rem]",
+            "bg-transparent text-[var(--color-text-secondary)] border border-[var(--color-border-card)] rounded-lg",
+            "text-[0.85rem] font-medium cursor-pointer font-sans",
+            "transition-[color,border-color,background] duration-200",
+            "hover:text-[var(--color-text-primary)] hover:border-[var(--color-border-hover)] hover:bg-[rgba(255,255,255,0.04)]"
+          )}
+        >
           {t.layout.back}
         </Link>
       </div>

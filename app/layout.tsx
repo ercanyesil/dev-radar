@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
 import { LanguageProvider } from "@/lib/i18n/context";
+import { ThemeProvider } from "@/lib/theme/context";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,17 +16,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "dev-radar — Next.js 16 & React 19.2 Feature Showcase",
+  title: "Ercan Yeşil — Software Developer",
   description:
-    "Interactive demos for Next.js 16 and React 19.2's latest features: View Transitions, Server Actions, useEffectEvent, use cache, and Instant Navigation.",
+    "Software developer specializing in web applications, mobile apps, and backend systems. Co-founder of Cross4Cloud. Building dev-radar — a Next.js & React feature showcase.",
   keywords: [
-    "Next.js 16",
-    "React 19.2",
-    "View Transitions",
-    "Server Actions",
-    "useEffectEvent",
-    "use cache",
-    "Instant Navigation",
+    "Ercan Yeşil",
+    "Software Developer",
+    "Frontend Developer",
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Cross4Cloud",
+    "dev-radar",
   ],
 };
 
@@ -34,12 +36,23 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable}`}
+      suppressHydrationWarning
     >
+      {/* Anti-flash script: runs before paint to apply saved theme */}
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('dev-radar-theme');if(t==='light'){document.documentElement.classList.add('light');}else{document.documentElement.classList.add('dark');}}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body suppressHydrationWarning>
-        <LanguageProvider>
-          <NavBar />
-          {children}
-        </LanguageProvider>
+        <ThemeProvider>
+          <LanguageProvider>
+            <NavBar />
+            {children}
+          </LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

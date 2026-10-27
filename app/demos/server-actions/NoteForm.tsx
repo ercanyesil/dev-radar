@@ -3,6 +3,7 @@
 import { useActionState } from "react";
 import { addNote } from "./actions";
 import { useT } from "@/lib/i18n/context";
+import { cn } from "@/lib/utils";
 
 type NoteActionState = { error?: string } | null;
 
@@ -16,36 +17,39 @@ export default function NoteForm() {
   const sa = t.serverActions;
 
   return (
-    <form action={formAction} style={{ marginBottom: "1.25rem" }}>
-      <label style={{ display: "block", marginBottom: "0.5rem", fontSize: "0.875rem", fontWeight: 600, color: "var(--text-secondary)" }}>
+    <form action={formAction} className="mb-5">
+      <label className="block mb-2 text-[0.875rem] font-semibold text-(--color-text-secondary)">
         {sa.noteLabel}
       </label>
-      <div style={{ display: "flex", gap: "0.75rem" }}>
+      <div className="flex gap-3">
         <input
           name="text"
           type="text"
           placeholder={sa.notePlaceholder}
           required
           disabled={isPending}
-          style={{ flex: 1 }}
+          className="flex-1 bg-bg-base border border-border-card rounded-lg px-3.5 py-2.5 text-text-primary font-sans text-[0.9rem] outline-none transition-[border-color,box-shadow] duration-200 focus:border-[rgba(255,255,255,0.3)] focus:shadow-[0_0_0_3px_rgba(255,255,255,0.05)]"
           id="note-input"
         />
         <button
           type="submit"
-          className="btn-primary"
           disabled={isPending}
           id="add-note-btn"
-          style={{ whiteSpace: "nowrap" }}
+          className={cn(
+            "inline-flex items-center gap-2 px-[1.1rem] py-[0.55rem] whitespace-nowrap",
+            "bg-text-primary text-bg-base",
+            "border-none rounded-lg text-[0.85rem] font-semibold cursor-pointer font-sans tracking-[-0.01em]",
+            "transition-[opacity,transform] duration-200 hover:opacity-[0.88] hover:-translate-y-px active:translate-y-0",
+            "disabled:opacity-50 disabled:cursor-not-allowed"
+          )}
         >
           {isPending ? sa.addingBtn : `+ ${sa.addBtn}`}
         </button>
       </div>
       {state?.error && (
-        <p style={{ color: "#ef4444", fontSize: "0.8rem", marginTop: "0.5rem" }}>
-          {state.error}
-        </p>
+        <p className="text-[#ef4444] text-[0.8rem] mt-2">{state.error}</p>
       )}
-      <p style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginTop: "0.5rem" }}>
+      <p className="text-[0.75rem] text-text-muted mt-2">
         ↑ {sa.formHint}
       </p>
     </form>

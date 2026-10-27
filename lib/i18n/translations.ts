@@ -14,6 +14,11 @@ export const translations = {
       github: "GitHub",
       langToggle: "TR",
       langLabel: "Switch to Turkish",
+      about: "About",
+      work: "Work",
+      projects: "Projects",
+      articles: "Articles",
+      contact: "Contact",
     },
 
     // --- Home page ---
@@ -56,12 +61,126 @@ export const translations = {
           description:
             "Cache async functions with 'use cache' + cacheLife() profiles. Tag-based invalidation with cacheTag() for fine-grained cache control.",
         },
+        eventLoop: {
+          title: "JavaScript Event Loop",
+          description:
+            "Learn the call stack, Web APIs, and the microtask and macrotask queues step by step with an interactive animation.",
+          cta: "Read article",
+        },
         instantNav: {
           title: "Instant Navigation",
           description:
             "Structure routes with Suspense + 'use cache' so pages load instantly. Understand App Shell, static shell, and the instant export API.",
         },
       },
+    },
+
+    // --- Portfolio Page ---
+    portfolio: {
+      bio1:
+        "Skilled software developer experienced in TypeScript, JavaScript, React, Node.js, and Three.js. Specializing in building efficient, scalable, cross-platform mobile apps, backend APIs, and responsive web platforms.",
+      bio2part1: "Currently building",
+      bio2part2: "an interactive showcase of the latest Next.js & React features. Currently working as",
+      bio2role: "Senior Frontend Developer",
+      bio2at: "at",
+      latestWriting: "Latest Writing",
+      connect: "Connect",
+      workExperience: "Work Experience",
+      workSubtitle: "My professional journey so far.",
+      selectedProjects: "Selected Projects",
+      skills: "Skills",
+      education: "Education",
+      builtWith: "Built with Next.js · React",
+      devRadarDesc: "Interactive Next.js & React 19 feature showcase",
+      openSourceDesc: "Open Source Projects & Contributions",
+      openSourceWriting: "dev-radar — Next.js 16 & React 19.2 Feature Showcase",
+      work: [
+        {
+          title: "Senior Frontend Developer",
+          company: "Wease",
+          companyUrl: "https://wease.io",
+          period: "FEB 2025 — PRESENT",
+          description:
+            "Architected scalable SaaS frontend using Next.js (App Router), TypeScript, React Query, Zustand, and Ably (WebSocket real-time chat/Kanban/calendar). Built cross-platform mobile app with React Native & Expo. Developed wease-insurance CRM module, wease-admin-panel, and multilingual SEO landing pages.",
+        },
+        {
+          title: "Front-end Developer",
+          company: "Fansupport",
+          period: "MAY 2023 — NOV 2024",
+          description:
+            "Developed the conditional fan support platform frontend using React, Redux Toolkit, Styled Components, Mantine, and i18n internationalization.",
+        },
+        {
+          title: "Software Engineer",
+          company: "New Mind Bilgi Yönetim Sistemleri",
+          period: "FEB 2023 — JUNE 2023",
+          description:
+            "Built a custom legal case management application for GSI Goksu Safi Isik Attorney Partnership using Node.js, Handlebars/Twig templates, MVC architecture, and MySQL.",
+        },
+        {
+          title: "Frontend Bootcamp",
+          company: "Turkcell Geleceği Yazanlar",
+          period: "OCT 2022 — JAN 2023",
+          description:
+            "Intensive React, Redux, and modern web application development training program.",
+        },
+        {
+          title: "Front-end Developer",
+          company: "Brand Advocates",
+          period: "FEB 2021 — JUNE 2021",
+          description:
+            "Front-end layout design, performance optimization, debugging, and web features implementation.",
+        },
+        {
+          title: "Intern Engineer — Android Developer",
+          company: "Makel Şirketler Grubu",
+          period: "JUNE 2020 — SEPT 2020",
+          description: "R&D Android application development for Smart Home projects.",
+        },
+        {
+          title: "Intern Engineer — Software Developer",
+          company: "Huawei Technologies Co.",
+          period: "JUNE 2019 — JULY 2019",
+          description:
+            "RCS Fixed Network Team (Smart City) and RCS Wireless Team — communication protocol research and development.",
+        },
+      ],
+      projects: [
+        {
+          title: "dev-radar",
+          description: "Interactive Next.js & React 19 feature showcase",
+          url: "/articles",
+          tag: "Next.js · React",
+        },
+        {
+          title: "Car Rent",
+          description: "Web-based car rental platform",
+          url: "https://github.com/ercanyesil",
+          tag: "React · MongoDB · Tailwind",
+        },
+        {
+          title: "Job IT",
+          description: "Job search platform with location-based listings & salary estimates",
+          url: "https://github.com/ercanyesil",
+          tag: "React · REST API · SCSS",
+        },
+        {
+          title: "Trip Guide",
+          description: "Travel booking & destination recommendation platform",
+          url: "https://github.com/ercanyesil",
+          tag: "Next.js · Supabase",
+        },
+      ],
+      educationTitle: "Computer Engineering",
+      educationSchool: "Düzce Üniversitesi",
+      educationPeriod: "2016 — 2021",
+      educationDesc:
+        "Bachelor's degree in Computer Engineering. Gained strong foundations in algorithms, data structures, software architecture, and full-stack development.",
+      contactTitle: "Contact",
+      contactSubtitle: "Have a project in mind or want to work together? Feel free to reach out.",
+      contactEmail: "ercan@ercanyesil.com",
+      contactEmailLabel: "Send an email",
+      contactAvailable: "Available for freelance & full-time opportunities.",
     },
 
     // --- DemoLayout ---
@@ -267,6 +386,11 @@ export const translations = {
       github: "GitHub",
       langToggle: "EN",
       langLabel: "Switch to English",
+      about: "Hakkımda",
+      work: "Deneyim",
+      projects: "Projeler",
+      articles: "Yazılar",
+      contact: "İletişim",
     },
 
     home: {
@@ -308,12 +432,126 @@ export const translations = {
           description:
             "'use cache' + cacheLife() profilleriyle async fonksiyonları önbelleğe alın. cacheTag() ile hedefli önbellek temizleme.",
         },
+        eventLoop: {
+          title: "JavaScript Event Loop",
+          description:
+            "Çağrı yığını, Web API'ler, mikro ve makro görev kuyruklarını interaktif bir animasyonla adım adım öğrenin.",
+          cta: "Makaleyi oku",
+        },
         instantNav: {
           title: "Anlık Navigasyon",
           description:
             "Suspense + 'use cache' ile sayfaların anında yüklenmesini sağlayın. App Shell, statik kabuk ve instant export API'sini öğrenin.",
         },
       },
+    },
+
+    // --- Portfolio Page ---
+    portfolio: {
+      bio1:
+        "TypeScript, JavaScript, React, Node.js ve Three.js konularında deneyimli yazılım geliştiricisi. Verimli, ölçeklenebilir, çok platformlu mobil uygulamalar, backend API'ler ve duyarlı web platformları geliştirme konusunda uzmanlaşmış.",
+      bio2part1: "Şu anda",
+      bio2part2: "adlı, en yeni Next.js ve React özelliklerini gösteren interaktif bir projeyi geliştiriyor. Şu an",
+      bio2role: "Kıdemli Frontend Geliştirici",
+      bio2at: "olarak",
+      latestWriting: "Son Yazılar",
+      connect: "Bağlantılar",
+      workExperience: "İş Deneyimi",
+      workSubtitle: "Şimdiye kadarki profesyonel yolculuğum.",
+      selectedProjects: "Seçili Projeler",
+      skills: "Yetenekler",
+      education: "Eğitim",
+      builtWith: "Next.js · React ile yapıldı",
+      devRadarDesc: "İnteraktif Next.js & React 19 özellik vitrini",
+      openSourceDesc: "Açık Kaynak Projeler & Katkılar",
+      openSourceWriting: "dev-radar — Next.js 16 & React 19.2 Özellik Vitrini",
+      work: [
+        {
+          title: "Kıdemli Frontend Geliştirici",
+          company: "Wease",
+          companyUrl: "https://wease.io",
+          period: "Şub 2025 — Günümüz",
+          description:
+            "Next.js (App Router), TypeScript, React Query, Zustand ve Ably (WebSocket gerçek zamanlı chat/Kanban/takvim) kullanarak ölçeklenebilir SaaS frontend mimarisi kurdu. React Native & Expo ile çok platformlu mobil uygulama geliştirdi. wease-insurance CRM modülü, wease-admin-panel ve çok dilli SEO açılış sayfaları geliştirdi.",
+        },
+        {
+          title: "Frontend Geliştirici",
+          company: "Fansupport",
+          period: "May 2023 — Kas 2024",
+          description:
+            "React, Redux Toolkit, Styled Components, Mantine ve i18n uluslararasılaştırma kullanarak koşullu taraftar destek platform frontend'ini geliştirdi.",
+        },
+        {
+          title: "Yazılım Mühendisi",
+          company: "New Mind Bilgi Yönetim Sistemleri",
+          period: "Şub 2023 — Haz 2023",
+          description:
+            "GSI Goksu Safi Işık Avukatlık Ortaklığı için Node.js, Handlebars/Twig şablonları, MVC mimarisi ve MySQL kullanarak özel hukuk dava yönetim uygulaması geliştirdi.",
+        },
+        {
+          title: "Frontend Bootcamp",
+          company: "Turkcell Geleceği Yazanlar",
+          period: "Eki 2022 — Oca 2023",
+          description:
+            "Yoğun React, Redux ve modern web uygulama geliştirme eğitim programı.",
+        },
+        {
+          title: "Frontend Geliştirici",
+          company: "Brand Advocates",
+          period: "Şub 2021 — Haz 2021",
+          description:
+            "Frontend düzen tasarımı, performans optimizasyonu, hata ayıklama ve web özellikleri implementasyonu.",
+        },
+        {
+          title: "Stajyer Mühendis — Android Geliştirici",
+          company: "Makel Şirketler Grubu",
+          period: "Haz 2020 — Eyl 2020",
+          description: "Akıllı Ev projeleri için AR-GE Android uygulama geliştirme.",
+        },
+        {
+          title: "Stajyer Mühendis — Yazılım Geliştirici",
+          company: "Huawei Technologies Co.",
+          period: "Haz 2019 — Tem 2019",
+          description:
+            "RCS Sabit Ağ Ekibi (Akıllı Şehir) ve RCS Kablosuz Ekibi — iletişim protokolü araştırma ve geliştirme.",
+        },
+      ],
+      projects: [
+        {
+          title: "dev-radar",
+          description: "İnteraktif Next.js & React 19 özellik vitrini",
+          url: "/articles",
+          tag: "Next.js · React",
+        },
+        {
+          title: "Car Rent",
+          description: "Web tabanlı araç kiralama platformu",
+          url: "https://github.com/ercanyesil",
+          tag: "React · MongoDB · Tailwind",
+        },
+        {
+          title: "Job IT",
+          description: "Konum tabanlı listeler ve maaş tahmini içeren iş arama platformu",
+          url: "https://github.com/ercanyesil",
+          tag: "React · REST API · SCSS",
+        },
+        {
+          title: "Trip Guide",
+          description: "Seyahat rezervasyonu ve destinasyon öneri platformu",
+          url: "https://github.com/ercanyesil",
+          tag: "Next.js · Supabase",
+        },
+      ],
+      educationTitle: "Bilgisayar Mühendisliği",
+      educationSchool: "Düzce Üniversitesi",
+      educationPeriod: "2016 — 2021",
+      educationDesc:
+        "Bilgisayar Mühendisliği lisans derecesi. Algoritmalar, veri yapıları, yazılım mimarisi ve full-stack geliştirme konularında güçlü temel kazandı.",
+      contactTitle: "İletişim",
+      contactSubtitle: "Bir projen mi var ya da birlikte çalışmak mı istiyorsun? Seninle iletişime geçmekten mutluluk duyarım.",
+      contactEmail: "ercan@ercanyesil.com",
+      contactEmailLabel: "E-posta gönder",
+      contactAvailable: "Freelance ve tam zamanlı fırsatlara açığım.",
     },
 
     layout: {
